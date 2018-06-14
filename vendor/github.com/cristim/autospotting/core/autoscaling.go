@@ -494,6 +494,9 @@ func (a *autoScalingGroup) getInstance(
 					(!onDemand && !i.isSpot())) {
 				continue
 			}
+			if i.isProtected() {
+				continue
+			}
 			if (availabilityZone != nil) &&
 				(*availabilityZone != *i.Placement.AvailabilityZone) {
 				continue

@@ -367,7 +367,7 @@ func (a *autoScalingGroup) scanInstances() instances {
 			continue
 		}
 
-		i.asg, i.region = a, a.region
+		i.asg, i.region, i.protected = a, a.region, inst.ProtectedFromScaleIn
 
 		if i.isSpot() {
 			i.price = i.typeInfo.pricing.spot[*i.Placement.AvailabilityZone]

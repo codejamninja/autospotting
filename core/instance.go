@@ -133,6 +133,10 @@ func (i *instance) isSpot() bool {
 		*i.InstanceLifecycle == "spot")
 }
 
+func (i *instance) isProtected() bool {
+	return i.protected
+}
+
 func (i *instance) canTerminate() bool {
 	return *i.State.Name != ec2.InstanceStateNameTerminated &&
 		*i.State.Name != ec2.InstanceStateNameShuttingDown
