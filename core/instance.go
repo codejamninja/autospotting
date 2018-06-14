@@ -94,10 +94,11 @@ func (is *instanceManager) instances() <-chan *instance {
 
 type instance struct {
 	*ec2.Instance
-	typeInfo instanceTypeInformation
-	price    float64
-	region   *region
-	asg      *autoScalingGroup
+	typeInfo  instanceTypeInformation
+	price     float64
+	region    *region
+	protected bool
+	asg       *autoScalingGroup
 }
 
 type instanceTypeInformation struct {

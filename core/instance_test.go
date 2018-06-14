@@ -236,6 +236,36 @@ func TestIsSpot(t *testing.T) {
 		})
 	}
 }
+
+func TestIsProtected(t *testing.T) {
+
+	tests := []struct {
+		name      string
+		protected bool
+		expected  bool
+	}{
+		{name: "protected is true",
+			protected: true,
+			expected:  true,
+		},
+		{name: "protected is false",
+			protected: false,
+			expected:  false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			i := &instance{Instance: &ec2.Instance{}}
+			i.protected = tt.protected
+			retValue := i.isProtected()
+			if retValue != tt.expected {
+				t.Errorf("Value received for '%t': %t expected %t", tt.protected, retValue, tt.expected)
+			}
+		})
+	}
+}
+
 func TestIsEBSCompatible(t *testing.T) {
 	tests := []struct {
 		name         string
