@@ -38,6 +38,7 @@ func run() {
 		"regions='%s' "+
 		"min_on_demand_number=%d "+
 		"min_on_demand_percentage=%.1f "+
+		"protect_min_on_demand=%t "+
 		"allowed_instance_types=%v "+
 		"disallowed_instance_types=%v "+
 		"on_demand_price_multiplier=%.2f "+
@@ -49,6 +50,7 @@ func run() {
 		conf.Regions,
 		conf.MinOnDemandNumber,
 		conf.MinOnDemandPercentage,
+		conf.ProtectMinOnDemand,
 		conf.AllowedInstanceTypes,
 		conf.DisallowedInstanceTypes,
 		conf.OnDemandPriceMultiplier,
@@ -123,6 +125,9 @@ func (c *cfgData) parseCommandLineFlags() {
 		"\n\tPercentage of the total number of instances in each group to be kept on-demand\n\t"+
 			"Can be overridden on a per-group basis using the tag "+autospotting.OnDemandPercentageTag+
 			"\n\tIt is ignored if min_on_demand_number is also set.\n")
+	flag.Float64Var(&c.ProtectMinOnDemand, "protect_min_on_demand", false,
+		"\n\tAutomatically mark the minimum number of required on-demand instances as required\n\t"+
+			"\n\tIt is ignored if min_on_demand_number and min_on_demand_percentage are both 0.\n")
 	flag.Float64Var(&c.OnDemandPriceMultiplier, "on_demand_price_multiplier", 1.0,
 		"\n\tMultiplier for the on-demand price. Numbers less than 1.0 are useful for volume discounts.\n"+
 			"\tExample: ./autospotting -on_demand_price_multiplier 0.6 will have the on-demand price "+

@@ -23,6 +23,7 @@ type Config struct {
 
 	MinOnDemandNumber         int64
 	MinOnDemandPercentage     float64
+	ProtectMinOnDemand        bool
 	Regions                   string
 	AllowedInstanceTypes      string
 	DisallowedInstanceTypes   string
