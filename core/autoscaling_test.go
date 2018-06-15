@@ -1764,7 +1764,8 @@ func TestScanInstances(t *testing.T) {
 							},
 						},
 					},
-					price: 0.1,
+					price:     0.1,
+					protected: false,
 				},
 				"2": {
 					Instance: &ec2.Instance{
